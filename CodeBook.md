@@ -2,28 +2,32 @@
 
 For the description of the experiment and variables provided in the raw data set, please refer to the documentation in the original data (included in this repository for reference):
 
-* README.txt: Overall experiment and raw data layout.
-* features_info.txt: Description of the features.
+* [README.txt](https://github.com/ibinado/tidydata/blob/master/raw/README.txt):
+  Overall experiment and raw data layout.
+* [features_info.txt](https://github.com/ibinado/tidydata/blob/master/raw/features_info.txt):
+  Description of the features.
 
 ## Data Cleanup
 
-To generate the tidy data set (R variable *tidy*), *run_analysis.R* performs the following transformations on the raw data:
+To generate the tidy data set (R variable *tidy*),
+[run_analysis.R](https://github.com/ibinado/tidydata/blob/master/run_analysis.R)
+performs the following transformations on the raw data:
 
 * The test and training data sets are merged into a single data set.
 * Of the features in the raw data set, only the mean and standard deviation variables, i.e. those with *mean()* or *std()* in their original feature names are kept, all others are dropped. Note also that the original time-series data from which the features in the raw data set were computed are not part of the tidy data set.
-* Feature names are cleaned up by dropping the *()* characters and converting them to all lower case.
+* Feature names are cleaned up by dropping the *()* characters and converting them to all lower case. In addition, a typo (BodyBody) in the feature names is corrected.
 * The *activity* variable is converted from an integer representation in the raw data set to a factor with appropriate activity names.
-* The data set is sorted by subject and activity.
+* Fixed variables *subject* and *activity* are moved before measured variables and the data set is sorted by them.
 
-To generate the summarized tidy data set (R variable *summarized.tidy*) the mean of every feature is computed for every combination of subject and activity. This is the data set that is written to the *wearable.txt* file
+To generate the summarized tidy data set (R variable *summarized.tidy*), the mean of every feature is computed for every combination of subject and activity. This is the data set that is written to the *wearable.txt* file
 
 # Variables
 
-The following definitions are used in variable naming below:
+The following abbreviations are used in variable naming below:
 
 * **acc**: linear acceleration as measured by the accelerometer.
 * **gyro**: angular velocity as measured by the gyroscope.
-* **x**, **y**, **z**: 3-axis components of the respective measuremnts.
+* **x**, **y**, **z**: 3-axis components of the respective measurements.
 * **mag**: magnitute computed as Euclidean norm of 3-axis components.
 * **jerk**: jerk signal computed as time derivative of the corresponding variable.
 * **mean**: mean of the respective measurements.
