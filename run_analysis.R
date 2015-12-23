@@ -80,9 +80,11 @@ names(tidy) <- feature_labels$V2
 # 2) Extract only the measurements on the mean and standard deviation.
 tidy <- tidy[, grep('-(mean|std)[(]', names(tidy)), with=FALSE]
 # 4) Appropriately label the data set with descriptive variable names.
-# Remove parenthesis from column names and lowercase them.
-# (naming rules see 04_01_editingTextVariables last slide)
-names(tidy) <- tolower(gsub('[()]', '', names(tidy)))
+# * remove parenthesis from variable names
+# * fix typo in data: BodyBody -> Body
+# * lowercase names
+# (for naming rules see 04_01_editingTextVariables last slide)
+names(tidy) <- tolower(gsub('BodyBody', 'Body', gsub('[()]', '', names(tidy))))
 names <- names(tidy)
 
 # Add subject and activity columns to cleaned up data.
